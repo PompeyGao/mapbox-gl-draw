@@ -38,18 +38,56 @@ export default function render() {
       store.sources[source].push(geojson);
     });
   }
+  const typePolygonList = [
+    Constants.geojsonTypes.POLYGON,
+    Constants.geojsonTypes.MULTI_POLYGON
+  ];
+  const typeLineList = [
+    Constants.geojsonTypes.LINE_STRING,
+    Constants.geojsonTypes.MULTI_LINE_STRING,
+  ];
 
   if (coldChanged) {
     store.ctx.map.getSource(Constants.sources.COLD).setData({
       type: Constants.geojsonTypes.FEATURE_COLLECTION,
       features: store.sources.cold
     });
+    for (let i = 0; i < store.sources.cold.length; i++) {
+      const element = store.sources.cold[i];
+      if (typePolygonList.includes(element.geometry.type)) {
+        store.ctx.map.fire(Constants.events.UPDATE_POLYGON, {
+          feature: store.sources.cold[i],
+          other: "cold"
+        });
+      }
+      if (typeLineList.includes(element.geometry.type)) {
+        store.ctx.map.fire(Constants.events.UPDATE_MULTI_LINE_STRING, {
+          feature: store.sources.cold[i],
+          other: "cold"
+        });
+      }
+    }
   }
 
   store.ctx.map.getSource(Constants.sources.HOT).setData({
     type: Constants.geojsonTypes.FEATURE_COLLECTION,
     features: store.sources.hot
   });
+  for (let i = 0; i < store.sources.hot.length; i++) {
+    const element = store.sources.hot[i];
+    if (typePolygonList.includes(element.geometry.type)) {
+      store.ctx.map.fire(Constants.events.UPDATE_POLYGON, {
+        feature: store.sources.hot[i],
+        other: "hot"
+      });
+    }
+    if (typeLineList.includes(element.geometry.type)) {
+      store.ctx.map.fire(Constants.events.UPDATE_MULTI_LINE_STRING, {
+        feature: store.sources.hot[i],
+        other: "hot"
+      });
+    }
+  }
 
   if (store._emitSelectionChange) {
     store.ctx.map.fire(Constants.events.SELECTION_CHANGE, {
