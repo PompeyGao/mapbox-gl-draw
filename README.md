@@ -28,7 +28,7 @@ import MapboxDraw from "@mapbox/mapbox-gl-draw";
 **When using a CDN**
 
 ```html
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.js'></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.0/mapbox-gl-draw.js'></script>
 ```
 
 #### CSS
@@ -40,7 +40,7 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
 **When using CDN**
 ```html
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.3.0/mapbox-gl-draw.css' type='text/css' />
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.4.0/mapbox-gl-draw.css' type='text/css' />
 ```
 
 ### Typescript
@@ -129,5 +129,5 @@ Update the version number in [the GL JS example](https://github.com/mapbox/mapbo
 
 We're trying to follow standards when naming things. Here is a collection of links where we look for inspiration.
 
-- http://turfjs.org
+- https://turfjs.org
 - https://shapely.readthedocs.io/en/latest/manual.html
